@@ -1,10 +1,24 @@
 'use client'
 
 import classNames from 'classnames'
-import { Shrink, Home, LayoutGrid, Moon, Sun, ChevronLeft, ChevronRight } from 'lucide-react'
-import Link from 'next/link'
+import {
+  Shrink,
+  Home,
+  LayoutGrid,
+  Moon,
+  Sun,
+  ChevronLeft,
+  ChevronRight,
+  Book,
+  Plane,
+  Quote,
+  Printer,
+  Twitter,
+} from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
+
+import { NavItem } from './NavItem'
 
 interface NavItem {
   name: string
@@ -14,7 +28,18 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { name: 'Home', icon: Home, path: '/home' },
-  { name: 'Apps', icon: LayoutGrid, path: '/apps' },
+  { name: 'All Apps', icon: LayoutGrid, path: '/apps' },
+]
+
+const favoriteApps: NavItem[] = [
+  { name: 'Flight Log', icon: Plane, path: '/flight-log' },
+  { name: 'Journal', icon: Book, path: '/journal' },
+  { name: 'Quotes Library', icon: Quote, path: '/quotes-library' },
+]
+
+const shortcuts: NavItem[] = [
+  { name: 'Print Daily Briefing', icon: Printer, path: '#' },
+  { name: 'Tweet Composer', icon: Twitter, path: '#' },
 ]
 
 export function Nav() {
@@ -34,6 +59,10 @@ export function Nav() {
 
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded)
+  }
+
+  const handleShortcutClick = (name: string) => {
+    alert(name)
   }
 
   return (
@@ -56,59 +85,59 @@ export function Nav() {
       </div>
       <div className="flex flex-col flex-grow p-4 space-y-2">
         {navItems.map((item) => (
-          <Link
+          <NavItem
             key={item.name}
-            href={item.path}
-            className={classNames(
-              'flex items-center px-3 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-slate-700 font-medium text-xs uppercase rounded-md transition-colors duration-200 group',
-              {
-                'bg-indigo-100 border border-indigo-400 dark:bg-slate-700 dark:border-slate-500': pathname.includes(
-                  item.path,
-                ),
-                'justify-center w-10 h-10': !isExpanded,
-              },
-            )}
+            name={item.name}
+            icon={item.icon}
+            path={item.path}
+            isActive={pathname.includes(item.path)}
+            isExpanded={isExpanded}
             data-testid={`nav-link-${item.name.toLowerCase()}`}
-          >
-            <item.icon
-              className={classNames('w-5 h-5 stroke-1 flex-shrink-0', {
-                'm-0': !isExpanded,
-                'text-indigo-600 dark:text-slate-200': pathname.includes(item.path),
-              })}
-            />
-            {isExpanded && (
-              <span
-                className={classNames('ml-3', {
-                  'text-indigo-600 dark:text-slate-200': pathname.includes(item.path),
-                })}
-              >
-                {item.name}
-              </span>
-            )}
-          </Link>
+          />
         ))}
+        <div className={classNames('mt-4 mb-2', !isExpanded && 'border-t border-gray-200 dark:border-slate-500 pt-4')}>
+          {isExpanded && (
+            <h3 className="mt-6 text-xs font-semibold text-gray-500 dark:text-slate-400 uppercase mb-2">
+              Favorite Apps
+            </h3>
+          )}
+          {favoriteApps.map((item) => (
+            <NavItem
+              key={item.name}
+              name={item.name}
+              icon={item.icon}
+              path={item.path}
+              isActive={pathname.includes(item.path)}
+              isExpanded={isExpanded}
+              data-testid={`nav-link-${item.name.toLowerCase()}`}
+            />
+          ))}
+        </div>
+
+        <div className={classNames('mt-4 mb-2', !isExpanded && 'border-t border-gray-200 dark:border-slate-500 pt-4')}>
+          {isExpanded && (
+            <h3 className="mt-6 text-xs font-semibold text-gray-500 dark:text-slate-400 uppercase mb-2">Shortcuts</h3>
+          )}
+          {shortcuts.map((item) => (
+            <NavItem
+              key={item.name}
+              name={item.name}
+              icon={item.icon}
+              onClick={() => handleShortcutClick(item.name)}
+              isExpanded={isExpanded}
+              data-testid={`shortcut-${item.name.toLowerCase().replace(' ', '-')}`}
+            />
+          ))}
+        </div>
       </div>
       <div className="p-4">
-        <button
-          className={classNames(
-            'flex items-center w-full px-3 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-slate-700 font-medium text-xs uppercase rounded-md transition-colors duration-200 group',
-            { 'justify-center w-10 h-10': !isExpanded },
-          )}
+        <NavItem
+          name={isDarkMode ? 'Light Mode' : 'Dark Mode'}
+          icon={isDarkMode ? Sun : Moon}
           onClick={toggleDarkMode}
+          isExpanded={isExpanded}
           data-testid="dark-mode-toggle"
-        >
-          {isDarkMode ? (
-            <>
-              <Sun className={classNames('w-5 h-5 stroke-1 flex-shrink-0', { 'm-0': !isExpanded })} />
-              {isExpanded && <span className="ml-3">Light Mode</span>}
-            </>
-          ) : (
-            <>
-              <Moon className={classNames('w-5 h-5 stroke-1 flex-shrink-0', { 'm-0': !isExpanded })} />
-              {isExpanded && <span className="ml-3 uppercase">Dark Mode</span>}
-            </>
-          )}
-        </button>
+        />
       </div>
       <button
         onClick={toggleExpanded}
