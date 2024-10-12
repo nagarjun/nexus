@@ -46,11 +46,11 @@ export function Nav() {
     >
       <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-slate-500">
         <div className="flex items-center">
-          <div className="bg-indigo-600 p-2 rounded">
+          <div className="bg-indigo-600 dark:bg-slate-700 p-2 rounded">
             <Shrink className="w-6 h-6 text-white stroke-1" />
           </div>
           {isExpanded && (
-            <span className="ml-3 text-sm font-semibold text-gray-800 dark:text-slate-200 uppercase">Nexus</span>
+            <span className="ml-3 text-sm font-bold text-gray-800 dark:text-slate-200 uppercase">Nexus</span>
           )}
         </div>
       </div>
@@ -60,7 +60,7 @@ export function Nav() {
             key={item.name}
             href={item.path}
             className={classNames(
-              'flex items-center px-3 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-slate-700 text-sm rounded-md transition-colors duration-200 group',
+              'flex items-center px-3 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-slate-700 font-medium text-xs uppercase rounded-md transition-colors duration-200 group',
               {
                 'bg-indigo-100 border border-indigo-400 dark:bg-slate-700 dark:border-slate-500': pathname.includes(
                   item.path,
@@ -91,7 +91,7 @@ export function Nav() {
       <div className="p-4">
         <button
           className={classNames(
-            'flex items-center w-full px-3 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-slate-700 text-sm rounded-md transition-colors duration-200 group',
+            'flex items-center w-full px-3 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-slate-700 font-medium text-xs uppercase rounded-md transition-colors duration-200 group',
             { 'justify-center w-10 h-10': !isExpanded },
           )}
           onClick={toggleDarkMode}
@@ -105,7 +105,7 @@ export function Nav() {
           ) : (
             <>
               <Moon className={classNames('w-5 h-5 stroke-1 flex-shrink-0', { 'm-0': !isExpanded })} />
-              {isExpanded && <span className="ml-3">Dark Mode</span>}
+              {isExpanded && <span className="ml-3 uppercase">Dark Mode</span>}
             </>
           )}
         </button>
