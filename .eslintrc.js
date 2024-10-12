@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['next/core-web-vitals', 'prettier'],
+  extends: ['next/core-web-vitals', 'next/typescript', 'prettier'],
   plugins: ['import'],
   rules: {
     'import/order': [
