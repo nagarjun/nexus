@@ -16,7 +16,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className={`${noto.className} antialiased transition-all`}>
-        <div className="bg-slate-100 dark:bg-slate-700 w-screen min-h-screen">{children}</div>
+        <div className="bg-slate-100 dark:bg-slate-700 dark:text-slate-200 w-screen min-h-screen">{children}</div>
       </body>
     </html>
   )

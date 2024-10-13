@@ -16,7 +16,9 @@ import {
   Twitter,
 } from 'lucide-react'
 import { usePathname } from 'next/navigation'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+
+import { useDarkMode } from '@/app/hooks/useDarkMode'
 
 import { NavItem } from './NavItem'
 
@@ -43,23 +45,9 @@ const shortcuts: NavItem[] = [
 ]
 
 export function Nav() {
-  const [isDarkMode, setIsDarkMode] = useState(false)
+  const { isDarkMode, toggleDarkMode } = useDarkMode()
   const [isExpanded, setIsExpanded] = useState(true)
   const pathname = usePathname()
-
-  useEffect(() => {
-    const isDark = document.body.classList.contains('dark')
-    setIsDarkMode(isDark)
-  }, [])
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode)
-    document.body.classList.toggle('dark')
-  }
-
-  const toggleExpanded = () => {
-    setIsExpanded(!isExpanded)
-  }
 
   const handleShortcutClick = (name: string) => {
     alert(name)
@@ -140,7 +128,9 @@ export function Nav() {
         />
       </div>
       <button
-        onClick={toggleExpanded}
+        onClick={() => {
+          setIsExpanded(!isExpanded)
+        }}
         className="absolute -right-[0.9rem] top-[1.4rem] bg-white dark:bg-slate-600 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 rounded-full p-1 border border-gray-200 dark:border-slate-500"
         data-testid="toggle-expand-button"
       >

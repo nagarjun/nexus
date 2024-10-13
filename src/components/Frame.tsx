@@ -19,7 +19,7 @@ export function Frame({ title, disablePadding = false, children }: PropsWithChil
       <Nav />
       <div className="flex flex-col flex-1 overflow-y-auto">
         <div className="bg-white dark:bg-slate-600 border-b border-gray-200 dark:border-slate-500 h-[73px] flex items-center pl-8 pr-4">
-          <div className="flex gap-2 text-sm text-gray-800 dark:text-slate-200">
+          <div className="flex gap-2 text-sm">
             <span className="font-bold uppercase">News:</span>
             <p>
               Indian origin entrepreneur sells company for $900 million, buys iconic townhouse in the Upper West Side
