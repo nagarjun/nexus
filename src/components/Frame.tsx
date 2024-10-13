@@ -15,10 +15,15 @@ export function Frame({ title, disablePadding = false, children }: PropsWithChil
   }, [title])
 
   return (
-    <div className="flex h-screen overflow-hidden" data-testid="frame">
-      <Nav />
-      <div className="flex flex-col flex-1 overflow-y-auto">
-        <div className="bg-white dark:bg-slate-600 border-b border-gray-200 dark:border-slate-500 h-[73px] flex items-center pl-8 pr-4">
+    <div className="flex flex-col md:flex-row h-screen overflow-hidden" data-testid="frame">
+      <div className="w-full md:w-auto" data-testid="frame-left">
+        <Nav />
+      </div>
+      <div className="flex flex-col flex-1 overflow-y-auto" data-testid="frame-right">
+        <div
+          className="hidden md:flex bg-white dark:bg-slate-600 border-b border-gray-200 dark:border-slate-500 h-[73px] items-center pl-8 pr-4"
+          data-testid="ticker-strip"
+        >
           <div className="flex gap-2 text-sm">
             <span className="font-bold uppercase">News:</span>
             <p>
