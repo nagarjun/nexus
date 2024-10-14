@@ -1,6 +1,6 @@
 'use client'
 
-import { Frame } from '@/components'
+import { Frame } from '@/partials'
 
 export default function Dashboard() {
   return (

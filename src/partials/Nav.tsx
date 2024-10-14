@@ -1,25 +1,11 @@
 'use client'
 
 import classNames from 'classnames'
-import {
-  Shrink,
-  Home,
-  LayoutGrid,
-  Moon,
-  Sun,
-  ChevronLeft,
-  ChevronRight,
-  Book,
-  Plane,
-  Quote,
-  Printer,
-  Twitter,
-  Menu,
-  X,
-} from 'lucide-react'
+import { Shrink, Home, LayoutGrid, Moon, Sun, ChevronLeft, ChevronRight, Printer, Twitter, Menu, X } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
 
+import { apps, AppName, App } from '@/app/apps'
 import { useDarkMode } from '@/app/hooks/useDarkMode'
 
 import { NavItem } from './NavItem'
@@ -35,11 +21,7 @@ const navItems: NavItem[] = [
   { name: 'All Apps', icon: LayoutGrid, path: '/apps' },
 ]
 
-const favoriteApps: NavItem[] = [
-  { name: 'Flight Log', icon: Plane, path: '/flight-log' },
-  { name: 'Journal', icon: Book, path: '/journal' },
-  { name: 'Quotes Library', icon: Quote, path: '/quotes-library' },
-]
+const favoriteApps: App[] = [apps[AppName.FlightLog], apps[AppName.Journal], apps[AppName.QuoteLibrary]]
 
 const shortcuts: NavItem[] = [
   { name: 'Print Daily Briefing', icon: Printer, path: '#' },
@@ -80,7 +62,7 @@ const NavContent = ({ isExpanded, pathname, handleShortcutClick, toggleDarkMode,
             path={item.path}
             isActive={pathname.includes(item.path)}
             isExpanded={isExpanded}
-            data-testid={`nav-link-${item.name.toLowerCase()}`}
+            data-testid={`nav-link-${item.name.toLowerCase().replace(' ', '-')}`}
           />
         ))}
       </div>

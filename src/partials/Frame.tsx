@@ -19,7 +19,7 @@ export function Frame({ title, disablePadding = false, children }: PropsWithChil
       <div className="w-full md:w-auto" data-testid="frame-left">
         <Nav />
       </div>
-      <div className="flex flex-col flex-1 overflow-y-auto" data-testid="frame-right">
+      <div className="flex flex-col flex-1 min-h-full overflow-y-auto" data-testid="frame-right">
         <div
           className="hidden md:flex bg-white dark:bg-slate-600 border-b border-gray-200 dark:border-slate-500 h-[73px] items-center pl-8 pr-4"
           data-testid="ticker-strip"
@@ -31,7 +31,7 @@ export function Frame({ title, disablePadding = false, children }: PropsWithChil
             </p>
           </div>
         </div>
-        <div className={`${disablePadding ? '' : 'p-4'}`} data-testid="frame-content">
+        <div className={`flex flex-col flex-grow ${disablePadding ? '' : 'p-4'}`} data-testid="frame-content">
           {children}
         </div>
       </div>
