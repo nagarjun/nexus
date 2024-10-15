@@ -97,7 +97,7 @@ const NavContent = ({ isExpanded, pathname, handleShortcutClick, toggleDarkMode,
 
 export function Nav() {
   const { isDarkMode, toggleDarkMode } = useDarkMode()
-  const [isExpanded, setIsExpanded] = useState(true)
+  const [isExpanded, setIsExpanded] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const pathname = usePathname()
