@@ -21,7 +21,13 @@ const navItems: NavItem[] = [
   { name: 'All Apps', icon: LayoutGrid, path: '/apps' },
 ]
 
-const favoriteApps: App[] = [apps[AppName.FlightLog], apps[AppName.Journal], apps[AppName.QuoteLibrary]]
+const favoriteApps: App[] = [
+  apps[AppName.Bookshelf],
+  apps[AppName.FlightLog],
+  apps[AppName.Journal],
+  apps[AppName.MonthlyReading],
+  apps[AppName.QuoteLibrary],
+]
 
 const shortcuts: NavItem[] = [
   { name: 'Print Daily Briefing', icon: Printer, path: '#' },
