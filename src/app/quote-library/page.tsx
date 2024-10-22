@@ -1,10 +1,9 @@
 'use client'
 
 import { Plus } from 'lucide-react'
-
 import { AppName } from '@/app/apps'
 import { PageHeader } from '@/app/partials/PageHeader'
-import { Button } from '@/components'
+import { Button } from '@/components/ui'
 import { Frame, ContentContainer } from '@/partials'
 
 import { QuoteCard } from './QuoteCard'
@@ -35,8 +34,8 @@ export default function QuotesLibrary() {
   return (
     <Frame title={AppName.QuoteLibrary} disablePadding>
       <PageHeader appName={AppName.QuoteLibrary}>
-        <Button icon={<Plus />} variant="primary" onClick={() => {}}>
-          Add Quote
+        <Button variant="default" onClick={() => {}}>
+          <Plus /> Add Quote
         </Button>
       </PageHeader>
       <ContentContainer noPadding>

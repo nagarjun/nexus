@@ -1,12 +1,11 @@
-'use client'
+'use client' 
 
 import classNames from 'classnames'
 import { Shrink, Home, LayoutGrid, Moon, Sun, ChevronLeft, ChevronRight, Printer, Twitter, Menu, X } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
-
 import { apps, AppName, App } from '@/app/apps'
-import { useDarkMode } from '@/app/hooks/useDarkMode'
+import { useTheme } from 'next-themes'
 
 import { NavItem } from './NavItem'
 
@@ -56,7 +55,12 @@ const NavContent = ({ isExpanded, pathname, handleShortcutClick, toggleDarkMode,
           data-testid={`nav-link-${item.name.toLowerCase()}`}
         />
       ))}
-      <div className={classNames('mt-4 mb-2', !isExpanded && 'border-t border-gray-200 dark:border-slate-500 pt-4')}>
+      {!isExpanded && (
+        <div className="my-2">
+          <div className="h-px bg-gray-200 dark:bg-slate-500" />
+        </div>
+      )}
+      <div className="flex flex-col space-y-2">
         {isExpanded && (
           <h3 className="mt-6 text-xs font-semibold text-gray-500 dark:text-slate-400 uppercase mb-2">Favorite Apps</h3>
         )}
@@ -73,7 +77,12 @@ const NavContent = ({ isExpanded, pathname, handleShortcutClick, toggleDarkMode,
         ))}
       </div>
 
-      <div className={classNames('mt-4 mb-2', !isExpanded && 'border-t border-gray-200 dark:border-slate-500 pt-4')}>
+      {!isExpanded && (
+        <div className="my-2">
+          <div className="h-px bg-gray-200 dark:bg-slate-500" />
+        </div>
+      )}
+      <div className="flex flex-col space-y-2">
         {isExpanded && (
           <h3 className="mt-6 text-xs font-semibold text-gray-500 dark:text-slate-400 uppercase mb-2">Shortcuts</h3>
         )}
@@ -102,7 +111,7 @@ const NavContent = ({ isExpanded, pathname, handleShortcutClick, toggleDarkMode,
 )
 
 export function Nav() {
-  const { isDarkMode, toggleDarkMode } = useDarkMode()
+  const { theme, setTheme } = useTheme()
   const [isExpanded, setIsExpanded] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
@@ -157,8 +166,8 @@ export function Nav() {
             isExpanded={true}
             pathname={pathname}
             handleShortcutClick={handleShortcutClick}
-            toggleDarkMode={toggleDarkMode}
-            isDarkMode={isDarkMode}
+            toggleDarkMode={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            isDarkMode={theme === 'dark'}
           />
         </div>
       </div>
@@ -194,8 +203,8 @@ export function Nav() {
             isExpanded={isExpanded}
             pathname={pathname}
             handleShortcutClick={handleShortcutClick}
-            toggleDarkMode={toggleDarkMode}
-            isDarkMode={isDarkMode}
+            toggleDarkMode={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            isDarkMode={theme === 'dark'}
           />
           <button
             onClick={() => setIsExpanded(!isExpanded)}
