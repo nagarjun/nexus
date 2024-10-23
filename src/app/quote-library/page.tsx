@@ -1,11 +1,10 @@
 'use client'
 
-import { Plus } from 'lucide-react'
 import { AppName } from '@/app/apps'
 import { PageHeader } from '@/app/partials/PageHeader'
-import { Button } from '@/components/ui'
 import { Frame, ContentContainer } from '@/partials'
 
+import { AddQuoteDialog } from './AddQuoteDialog'
 import { QuoteCard } from './QuoteCard'
 
 const placeholderQuotes = [
@@ -34,9 +33,7 @@ export default function QuotesLibrary() {
   return (
     <Frame title={AppName.QuoteLibrary} disablePadding>
       <PageHeader appName={AppName.QuoteLibrary}>
-        <Button variant="default" onClick={() => {}}>
-          <Plus /> Add Quote
-        </Button>
+        <AddQuoteDialog />
       </PageHeader>
       <ContentContainer noPadding>
         <div className="flex flex-col sm:flex-row h-full">

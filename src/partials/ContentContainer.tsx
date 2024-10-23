@@ -10,7 +10,7 @@ export const ContentContainer: React.FC<ContentContainerProps> = ({ children, cl
   return (
     <div
       className={classNames(
-        'flex flex-col flex-grow border-t border-gray-200 dark:border-slate-500 bg-white dark:bg-slate-600',
+        'flex flex-col flex-grow border-t border-gray-200 dark:border-slate-500 bg-white dark:bg-slate-700',
         { 'p-4': !noPadding },
         className,
       )}

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: "Noto Sans", Arial, Helvetica, sans-serif;
+  font-family: 'Noto Sans', Arial, Helvetica, sans-serif;
 }
 
 @layer utilities {
@@ -11,8 +11,6 @@ body {
     text-wrap: balance;
   }
 }
-
-
 
 @layer base {
   :root {
@@ -70,8 +68,6 @@ body {
     --chart-5: 340 75% 55%;
   }
 }
-
-
 
 @layer base {
   * {

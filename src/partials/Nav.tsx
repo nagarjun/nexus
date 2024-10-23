@@ -1,11 +1,12 @@
-'use client' 
+'use client'
 
 import classNames from 'classnames'
 import { Shrink, Home, LayoutGrid, Moon, Sun, ChevronLeft, ChevronRight, Printer, Twitter, Menu, X } from 'lucide-react'
 import { usePathname } from 'next/navigation'
-import { useState, useEffect } from 'react'
-import { apps, AppName, App } from '@/app/apps'
 import { useTheme } from 'next-themes'
+import { useState, useEffect } from 'react'
+
+import { apps, AppName, App } from '@/app/apps'
 
 import { NavItem } from './NavItem'
 
@@ -131,10 +132,10 @@ export function Nav() {
   }
 
   const MobileNav = () => (
-    <nav className="h-[74px] bg-white dark:bg-slate-600 border-b border-gray-200 dark:border-slate-500">
+    <nav className="h-[74px] bg-white dark:bg-slate-700 border-b border-gray-200 dark:border-slate-500">
       <div className="flex items-center justify-between px-4 h-full">
         <div className="flex items-center">
-          <div className="bg-indigo-600 dark:bg-slate-700 p-2 rounded">
+          <div className="bg-indigo-600 dark:bg-slate-800 p-2 rounded">
             <Shrink className="w-6 h-6 text-white stroke-1" />
           </div>
           <span className="ml-3 text-sm font-bold text-gray-800 dark:text-slate-200 uppercase">Nexus</span>
@@ -148,7 +149,7 @@ export function Nav() {
 
   const MobileMenu = () => (
     <div
-      className={`fixed inset-0 bg-white dark:bg-slate-600 z-50 transition-all duration-300 ease-in-out ${
+      className={`fixed inset-0 bg-white dark:bg-slate-700 z-50 transition-all duration-300 ease-in-out ${
         isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
       }`}
       style={{
@@ -184,14 +185,14 @@ export function Nav() {
       ) : (
         <nav
           className={classNames(
-            'flex flex-col h-screen bg-white dark:bg-slate-600 border-r border-gray-200 dark:border-slate-500 transition-all duration-300 relative',
+            'flex flex-col h-screen bg-white dark:bg-slate-700 border-r border-gray-200 dark:border-slate-500 transition-all duration-300 relative',
             isExpanded ? 'w-64' : 'w-[76px]',
           )}
           data-testid="nav-menu"
         >
           <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-slate-500">
             <div className="flex items-center">
-              <div className="bg-indigo-600 dark:bg-slate-700 p-2 rounded">
+              <div className="bg-indigo-600 dark:bg-slate-800 p-2 rounded">
                 <Shrink className="w-6 h-6 text-white stroke-1" />
               </div>
               {isExpanded && (
@@ -208,7 +209,7 @@ export function Nav() {
           />
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="absolute -right-[0.9rem] top-[1.4rem] bg-white dark:bg-slate-600 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 rounded-full p-1 border border-gray-200 dark:border-slate-500"
+            className="absolute -right-[0.9rem] top-[1.4rem] bg-white dark:bg-slate-700 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 rounded-full p-1 border border-gray-200 dark:border-slate-500"
             data-testid="toggle-expand-button"
           >
             {isExpanded ? <ChevronLeft size={20} /> : <ChevronRight size={20} />}

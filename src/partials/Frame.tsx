@@ -21,7 +21,7 @@ export function Frame({ title, disablePadding = false, children }: PropsWithChil
       </div>
       <div className="flex flex-col flex-1 min-h-full overflow-y-auto" data-testid="frame-right">
         <div
-          className="hidden md:flex bg-white dark:bg-slate-600 border-b border-gray-200 dark:border-slate-500 h-[73px] items-center pl-8 pr-4"
+          className="hidden md:flex bg-white dark:bg-slate-700 border-b border-gray-200 dark:border-slate-500 h-[73px] items-center pl-8 pr-4"
           data-testid="ticker-strip"
         >
           <div className="flex gap-2 text-sm">
