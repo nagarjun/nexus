@@ -1,0 +1,11 @@
+{
+  "defaultEnv": "local",
+  "local": {
+    "driver": "pg",
+    "host": "localhost",
+    "port": 5432,
+    "database": "nexus",
+    "user": "nexusDbAdmin",
+    "password": "JdrjKLMCiDKYNjr"
+  }
+}

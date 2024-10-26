@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:14
+    container_name: nexus_db
+    environment:
+      POSTGRES_DB: nexus
+      POSTGRES_USER: nexusDbAdmin
+      POSTGRES_PASSWORD: JdrjKLMCiDKYNjr
+    volumes:
+      - ./docker_data/postgres:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'

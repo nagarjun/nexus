@@ -8,7 +8,10 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write .",
-    "dev:format-all-files": "eslint --fix . && prettier --write ."
+    "dev:format-all-files": "eslint --fix . && prettier --write .",
+    "dev:migration-create": "node ./node_modules/db-migrate/bin/db-migrate create --migrations-dir=./db-migrations/postgres",
+    "dev:migration-up": "node ./node_modules/db-migrate/bin/db-migrate up --migrations-dir=./db-migrations/postgres",
+    "dev:migration-down": "node ./node_modules/db-migrate/bin/db-migrate down --migrations-dir=./db-migrations/postgres"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -20,6 +23,8 @@
     "class-variance-authority": "^0.7.0",
     "classnames": "^2.5.1",
     "clsx": "^2.1.1",
+    "db-migrate": "^0.11.14",
+    "db-migrate-pg": "^1.5.2",
     "lucide-react": "^0.452.0",
     "next": "^15.0.0",
     "next-themes": "^0.3.0",
