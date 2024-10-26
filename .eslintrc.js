@@ -10,5 +10,6 @@ module.exports = {
         alphabetize: { order: 'asc', caseInsensitive: true },
       },
     ],
+    '@typescript-eslint/no-namespace': 'off',
   },
 }

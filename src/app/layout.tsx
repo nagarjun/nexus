@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
 import { Noto_Sans } from 'next/font/google'
 
-import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
+import { Toaster } from '@/components/ui/toaster'
+
+import './globals.css'
 
 const noto = Noto_Sans({
   subsets: ['latin'],
@@ -20,6 +22,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className={`${noto.className} antialiased transition-all`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="bg-slate-100 dark:bg-slate-800 dark:text-slate-200 w-screen min-h-screen">{children}</div>
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
