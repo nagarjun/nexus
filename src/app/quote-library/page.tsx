@@ -1,35 +1,61 @@
 'use client'
 
+import { useState, useEffect, useRef } from 'react'
+
+import { listQuotes } from '@/actions/quotes/list'
+import { Quote } from '@/actions/quotes/types'
 import { AppName } from '@/app/apps'
 import { PageHeader } from '@/app/partials/PageHeader'
+import { Button } from '@/components/ui'
 import { Frame, ContentContainer } from '@/partials'
 
 import { AddQuoteDialog } from './AddQuoteDialog'
 import { QuoteCard } from './QuoteCard'
 
-const placeholderQuotes = [
-  {
-    text: 'When something is important enough, you do it even if the odds are not in your favor.',
-    author: 'Elon Musk',
-  },
-  { text: 'Be the change that you wish to see in the world.', author: 'Mahatma Gandhi' },
-  { text: "I have not failed. I've just found 10,000 ways that won't work.", author: 'Thomas A. Edison' },
-  { text: "If you tell the truth, you don't have to remember anything.", author: 'Mark Twain' },
-  {
-    text: 'The greatest glory in living lies not in never falling, but in rising every time we fall.',
-    author: 'Nelson Mandela',
-  },
-  { text: 'Always forgive your enemies; nothing annoys them so much.', author: 'Oscar Wilde' },
-  { text: 'The only way to do great work is to love what you do.', author: 'Steve Jobs' },
-  { text: 'I think, therefore I am.', author: 'René Descartes' },
-  { text: 'The only true wisdom is in knowing you know nothing.', author: 'Socrates' },
-  {
-    text: 'It is better to remain silent at the risk of being thought a fool, than to talk and remove all doubt of it.',
-    author: 'Maurice Switzer',
-  },
-]
-
 export default function QuotesLibrary() {
+  const [quotes, setQuotes] = useState<Quote.QuoteRowWithAuthorAndCategories[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const [page, setPage] = useState(1)
+  const [hasMore, setHasMore] = useState(false)
+  const initialFetchDone = useRef(false)
+
+  const fetchQuotes = async (pageToFetch: number) => {
+    if (pageToFetch === 1 && initialFetchDone.current) return
+
+    try {
+      setLoading(true)
+      const result = await listQuotes({ page: pageToFetch, limit: 25 })
+      if (result.success) {
+        setQuotes((prevQuotes) => {
+          if (pageToFetch === 1) {
+            initialFetchDone.current = true
+            return result.quotes
+          }
+          return [...prevQuotes, ...result.quotes]
+        })
+        setHasMore(result.pagination.hasNextPage)
+        setPage(pageToFetch + 1)
+      } else {
+        setError(result.message || 'Failed to fetch quotes')
+      }
+    } catch {
+      setError('An error occurred while fetching quotes')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    fetchQuotes(1)
+  }, [])
+
+  const handleShowMore = () => {
+    if (!loading && hasMore) {
+      fetchQuotes(page)
+    }
+  }
+
   return (
     <Frame title={AppName.QuoteLibrary} disablePadding>
       <PageHeader appName={AppName.QuoteLibrary}>
@@ -44,18 +70,31 @@ export default function QuotesLibrary() {
           </div>
 
           {/* Right column - Quotes */}
-          <div className="sm:w-4/5 p-4 overflow-y-auto">
+          <div className="pb-28 sm:pb-4 sm:w-4/5 p-4 overflow-y-auto">
             <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4">
-              {placeholderQuotes.map((quote, index) => (
-                <div key={index} className="break-inside-avoid mb-4">
-                  <QuoteCard
-                    text={quote.text}
-                    author={quote.author}
-                    link={index % 2 === 0 ? 'https://example.com' : undefined}
-                  />
-                </div>
-              ))}
+              {loading && !initialFetchDone.current
+                ? Array.from({ length: 10 }).map((_, index) => (
+                    <div key={`loading-${index}`} className="break-inside-avoid mb-4">
+                      <QuoteCard loading />
+                    </div>
+                  ))
+                : quotes.map((quote) => (
+                    <div key={quote.id} className="break-inside-avoid mb-4">
+                      <QuoteCard quote={quote} />
+                    </div>
+                  ))}
+              {error && <div className="col-span-full text-center text-red-500">{error}</div>}
+              {!loading && !error && quotes.length === 0 && (
+                <div className="col-span-full text-center text-gray-500">No quotes found.</div>
+              )}
             </div>
+            {initialFetchDone.current && hasMore && (
+              <div className="mt-10 mb-5 text-center">
+                <Button onClick={handleShowMore} disabled={loading} loading={loading} variant="secondary" size="lg">
+                  Show More
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       </ContentContainer>

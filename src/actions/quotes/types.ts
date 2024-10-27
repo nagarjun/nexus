@@ -22,4 +22,31 @@ export namespace Quote {
     message: string
     quote?: QuoteRow
   }
+
+  export interface ListQuotesInput {
+    page?: number
+    limit?: number
+    orderBy?: 'createdAt' | 'updatedAt'
+    orderDirection?: 'ASC' | 'DESC'
+    authorId?: number
+    categories?: string[]
+  }
+
+  export interface QuoteRowWithAuthorAndCategories extends QuoteRow {
+    authorName: string
+    categories: string[]
+  }
+
+  export interface ListQuotesResult {
+    success: boolean
+    message?: string
+    quotes: QuoteRowWithAuthorAndCategories[]
+    pagination: {
+      currentPage: number
+      totalPages: number
+      totalCount: number
+      hasNextPage: boolean
+      hasPreviousPage: boolean
+    }
+  }
 }

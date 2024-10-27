@@ -46,9 +46,9 @@ exports.up = function (db) {
 
     -- Create junction table for quotes and categories (many-to-many relationship)
     CREATE TABLE "quotesCategoriesJunction" (
-      quoteId UUID REFERENCES "quotes"(id) ON DELETE CASCADE,
-      categoryId UUID REFERENCES "quoteCategories"(id) ON DELETE CASCADE,
-      PRIMARY KEY (quoteId, categoryId)
+      "quoteId" UUID REFERENCES "quotes"(id) ON DELETE CASCADE,
+      "categoryId" UUID REFERENCES "quoteCategories"(id) ON DELETE CASCADE,
+      PRIMARY KEY ("quoteId", "categoryId")
     );
 
     -- Create triggers for updating updatedAt
