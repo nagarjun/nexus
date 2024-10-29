@@ -1,4 +1,5 @@
 export * from './create'
 export * from './getAuthors'
+export * from './getRandomQuote'
 export * from './list'
 export * from './types'

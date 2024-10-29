@@ -66,7 +66,7 @@ export function Ticker() {
       data-testid="ticker-strip"
     >
       {/* News content */}
-      <div className="flex-1 p-4 md:py-0 md:pl-8 md:pr-4 flex items-center">
+      <div className="flex-1 p-4 md:py-0 md:pl-8 md:pr-4 flex items-center h-[73px]">
         {isLoading ? (
           <Skeleton className="h-6 w-full" />
         ) : error ? (
