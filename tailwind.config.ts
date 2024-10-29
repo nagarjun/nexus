@@ -59,7 +59,12 @@ const config: Config = {
       },
     },
   },
-  plugins: [animate],
+  plugins: [
+    animate,
+    function ({ addVariant }: { addVariant: (name: string, pattern: string) => void }) {
+      addVariant('child', '& > *')
+    },
+  ],
   darkMode: ['class'],
 }
 export default config

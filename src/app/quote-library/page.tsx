@@ -2,14 +2,14 @@
 
 import { useState, useEffect, useRef } from 'react'
 
-import { listQuotes } from '@/actions/quotes/list'
-import { Quote } from '@/actions/quotes/types'
+import { listQuotes, Quote } from '@/actions/quotes'
 import { AppName } from '@/app/apps'
 import { PageHeader } from '@/app/partials/PageHeader'
-import { Button } from '@/components/ui'
+import { Button, Label } from '@/components/ui'
 import { Frame, ContentContainer } from '@/partials'
 
 import { AddQuoteDialog } from './AddQuoteDialog'
+import { AuthorsSelector } from './AuthorsSelector'
 import { QuoteCard } from './QuoteCard'
 
 export default function QuotesLibrary() {
@@ -66,7 +66,8 @@ export default function QuotesLibrary() {
           {/* Left column - Filters */}
           <div className="w-full sm:w-1/5 p-4 border-b sm:border-b-0 sm:border-r border-gray-200 dark:border-slate-500">
             <h2 className="text-lg mb-4 text-gray-800 dark:text-slate-200">Filters</h2>
-            <p className="text-gray-600 dark:text-slate-400">Filter options will be added here.</p>
+            <Label>Author</Label>
+            <AuthorsSelector onSelect={() => {}} />
           </div>
 
           {/* Right column - Quotes */}

@@ -4,6 +4,15 @@ import { getPgClient } from '../../../lib/pg'
 
 import { Quote } from './types'
 
+function sanitizeName(name: string | undefined): string | undefined {
+  if (!name) return undefined
+
+  // Remove extra spaces and trim
+  const normalized = name.replace(/\s+/g, ' ').trim()
+  // Capitalize first letter of each word while preserving other capitals
+  return normalized.replace(/\b\w/g, (c) => c.toUpperCase())
+}
+
 export async function createQuote(input: Quote.CreateQuoteInput): Promise<Quote.CreateQuoteResult> {
   const client = await getPgClient()
 
@@ -15,7 +24,7 @@ export async function createQuote(input: Quote.CreateQuoteInput): Promise<Quote.
       `INSERT INTO "quotes" (quote, "authorId", source, url)
        VALUES ($1, (SELECT get_or_create_author($2)), $3, $4)
        RETURNING *`,
-      [input.quote, input.authorName, input.source, input.url],
+      [input.quote, sanitizeName(input.authorName), sanitizeName(input.source), input.url],
     )
     const newQuote = quoteResult.rows[0]
 
