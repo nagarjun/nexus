@@ -127,6 +127,11 @@ export function Nav() {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
+  useEffect(() => {
+    const root = document.documentElement;
+    root.style.setProperty('--nav-width', isExpanded ? '256px' : '76px');
+  }, [isExpanded]);
+
   const handleShortcutClick = (name: string) => {
     alert(name)
   }
@@ -185,7 +190,7 @@ export function Nav() {
       ) : (
         <nav
           className={classNames(
-            'flex flex-col h-screen bg-white dark:bg-slate-700 border-r border-gray-200 dark:border-slate-500 transition-all duration-300 relative',
+            'fixed top-0 left-0 flex flex-col h-screen bg-white dark:bg-slate-700 border-r border-gray-200 dark:border-slate-500 z-20 transition-all duration-300',
             isExpanded ? 'w-64' : 'w-[76px]',
           )}
           data-testid="nav-menu"

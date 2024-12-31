@@ -64,14 +64,14 @@ export default function QuotesLibrary() {
       <ContentContainer noPadding>
         <div className="flex flex-col sm:flex-row h-full">
           {/* Left column - Filters */}
-          <div className="w-full sm:w-1/5 p-4 border-b sm:border-b-0 sm:border-r border-gray-200 dark:border-slate-500">
+          <div className="w-full sm:w-[300px] p-4 border-b sm:border-b-0 sm:border-r border-gray-200 dark:border-slate-500">
             <h2 className="text-lg mb-4 text-gray-800 dark:text-slate-200">Filters</h2>
             <Label>Author</Label>
             <AuthorsSelector onSelect={() => {}} />
           </div>
 
           {/* Right column - Quotes */}
-          <div className="pb-28 sm:pb-4 sm:w-4/5 p-4 overflow-y-auto">
+          <div className="pb-28 sm:pb-4 sm:flex-1 p-4 overflow-y-auto">
             <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4">
               {loading && !initialFetchDone.current
                 ? Array.from({ length: 10 }).map((_, index) => (

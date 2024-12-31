@@ -62,7 +62,11 @@ export function Ticker() {
 
   return (
     <div
-      className="bg-white dark:bg-slate-700 border-b border-gray-200 dark:border-slate-500 flex flex-col md:flex-row md:h-[73px]"
+      className="bg-white dark:bg-slate-700 border-b border-gray-200 dark:border-slate-500 flex flex-col md:flex-row md:h-[73px] md:fixed md:top-0 md:right-0 z-10"
+      style={{
+        left: 'var(--nav-width)',
+        transition: 'left 0.3s ease'
+      }}
       data-testid="ticker-strip"
     >
       {/* News content */}

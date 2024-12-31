@@ -77,3 +77,15 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@media (min-width: 768px) {
+  :root {
+    --is-desktop: 1;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --is-desktop: 0;
+  }
+}
