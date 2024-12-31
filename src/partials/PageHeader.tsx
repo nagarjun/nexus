@@ -8,7 +8,7 @@ interface PageHeaderProps {
   children?: React.ReactNode
 }
 
-export const PageHeader: React.FC<PageHeaderProps> = ({ appName, description, children }) => {
+export function PageHeader({ appName, description, children }: PageHeaderProps) {
   const app = apps[appName]
   const IconComponent = app.icon
 
@@ -16,12 +16,12 @@ export const PageHeader: React.FC<PageHeaderProps> = ({ appName, description, ch
     <>
       {/* Spacer div to prevent content from jumping under fixed header */}
       <div className="hidden md:block h-[89px]" />
-      
-      <header 
+
+      <header
         className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 border-b border-gray-200 dark:border-slate-500 bg-slate-100 dark:bg-slate-800 md:fixed md:top-[73px] md:right-0 z-10"
         style={{
           left: 'var(--nav-width)',
-          transition: 'left 0.3s ease'
+          transition: 'left 0.3s ease',
         }}
       >
         <div className="flex items-center mb-4 sm:mb-0">

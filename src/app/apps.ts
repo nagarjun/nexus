@@ -1,9 +1,10 @@
-import { Plane, Book, Quote, BookOpen, List, Link } from 'lucide-react'
+import { Plane, Book, Quote, BookOpen, List, Link, Home } from 'lucide-react'
 
 export enum AppName {
   Bookmarks = 'Bookmarks',
   Bookshelf = 'Bookshelf',
   FlightLog = 'Flight Log',
+  Home = 'Home',
   Journal = 'Journal',
   MonthlyReading = 'Monthly Reading',
   QuoteLibrary = 'Quote Library',
@@ -34,6 +35,11 @@ export const apps: Record<AppName, App> = {
     icon: Plane,
     path: '/flight-log',
     description: 'Track and manage your flight history',
+  },
+  [AppName.Home]: {
+    name: AppName.Home,
+    icon: Home,
+    path: '/home',
   },
   [AppName.Journal]: {
     name: AppName.Journal,

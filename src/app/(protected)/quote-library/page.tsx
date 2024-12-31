@@ -4,9 +4,8 @@ import { useState, useEffect, useRef } from 'react'
 
 import { listQuotes, Quote } from '@/actions/quotes'
 import { AppName } from '@/app/apps'
-import { PageHeader } from '@/app/partials/PageHeader'
 import { Button, Label } from '@/components/ui'
-import { Frame, ContentContainer } from '@/partials'
+import { ContentContainer, PageHeader } from '@/partials'
 
 import { AddQuoteDialog } from './AddQuoteDialog'
 import { AuthorsSelector } from './AuthorsSelector'
@@ -57,7 +56,7 @@ export default function QuotesLibrary() {
   }
 
   return (
-    <Frame title={AppName.QuoteLibrary} disablePadding>
+    <>
       <PageHeader appName={AppName.QuoteLibrary}>
         <AddQuoteDialog />
       </PageHeader>
@@ -99,6 +98,6 @@ export default function QuotesLibrary() {
           </div>
         </div>
       </ContentContainer>
-    </Frame>
+    </>
   )
 }

@@ -128,9 +128,9 @@ export function Nav() {
   }, [])
 
   useEffect(() => {
-    const root = document.documentElement;
-    root.style.setProperty('--nav-width', isExpanded ? '256px' : '76px');
-  }, [isExpanded]);
+    const root = document.documentElement
+    root.style.setProperty('--nav-width', isExpanded ? '256px' : '76px')
+  }, [isExpanded])
 
   const handleShortcutClick = (name: string) => {
     alert(name)

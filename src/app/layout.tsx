@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description: "Nag's very own super app",
 }
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${noto.className} antialiased transition-all`}>
